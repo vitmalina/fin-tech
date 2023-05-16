@@ -1,0 +1,216 @@
+<html>
+
+<head>
+  <title>Tape Explorer</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header class="app-header">Tape Explorer (The place where it all begins)</header>
+  <div class="panes">
+    <div class="left-pane" id="left-pane">
+        <span><button id="export-button"  style="margin-left: 10px; background: #ffa500;">Export</button></span>
+      <ul id="links"></ul>
+      <div class="hist-box"></div>
+      <div class="retVals" id="retVals" style="display: none;">s-###_EXPR_###,mif-###_MIF_###,mef-###_MEF_###,sff-###_SFF_###</div>
+      
+
+    </div>
+    <div class="right-pane" id="right-pane">###_MESSAGES_###</div>
+  </div>
+
+  <script>
+     const links = [
+       {name: 'Next', href: '/next', input: false, isBtn: true},
+       {name: 'Search (regex)', href: '/search', input: true, isBtn: true, sendField: 's'},
+       {name: 'Message Include Filter', href: '/message_include_filter', input: true, isBtn: false, sendField: 'mif'},
+       {name: 'Message Exclude Filter', href: '/message_exclude_filter', input: true, isBtn: false, sendField: 'mef'},
+       {name: 'Set Field Filter', href: '/field_filter', input: true, isBtn: false, sendField: 'sff'},
+       {name: 'Dump in HEX', href: '/hex', input: false, isBtn: false},
+       {name: 'Rewind', href: '/rewind', input: false, isBtn: false},
+       {name: 'Stats', href: '/stats', input: false, isBtn: false},
+       {name: 'Tape Info', href: '/info', input: false, isBtn: false},
+     ];
+
+    const linksList = document.querySelector('#links');
+    const exportBtn = document.querySelector("#export-button");
+ 
+    exportBtn.addEventListener("click", function() {
+      let elements = document.getElementById("right-pane").children;
+      let csv = [];
+      for (let i = 0; i < elements.length; i++) {
+        let element = elements[i];
+        if (element.tagName === "TABLE") {
+          let header = [];
+          let headerCells = element.getElementsByTagName("th");
+          for (let j = 0; j < headerCells.length; j++) {
+            header.push(headerCells[j].innerText);
+          }
+          csv.push(header.join(","));
+
+          let rows = element.getElementsByTagName("tr");
+          for (let j = 0; j < rows.length; j++) {
+            let row = [];
+            let cells = rows[j].getElementsByTagName("td");
+            for (let k = 0; k < cells.length; k++) {
+              row.push(cells[k].innerText);
+            }
+            csv.push(row.join(","));
+          }
+          csv.push("");
+        } else {
+          csv.push(element.innerText);
+          csv.push("");
+        }
+      }
+
+      let blob = new Blob([csv.join("\n")], {type: "text/csv"});
+      let url = URL.createObjectURL(blob);
+
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "TapeExplorer.csv";
+      a.click();
+    });
+
+
+    for (let i = 0; i < links.length; i++) {
+      const link = links[i];
+      const listItem = document.createElement('li');
+      const linkElement = document.createElement('a');
+      linkElement.innerHTML = link.name;
+      linkElement.href = link.href;
+      linkElement.classList.add('dynamic-link');
+      linkElement.setAttribute('isBtn', link.isBtn);
+      const inputElement = document.createElement("input");
+      inputElement.type = "text";
+      inputElement.value = '';
+      listItem.appendChild(linkElement);
+      listItem.appendChild(inputElement);
+      linksList.appendChild(listItem);
+      if (!link.input) {
+        inputElement.style.display = 'none';
+      }
+      if (link.input && !link.isBtn) {
+        linkElement.classList.add('unclickable');
+        linkElement.removeAttribute('href');
+        linkElement.style.cursor = 'default';
+      }
+    }
+    const dynamicLinks = document.querySelectorAll('.dynamic-link');
+    for (let i = 0; i < dynamicLinks.length; i++) {
+      const link = dynamicLinks[i];
+
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const input = link.nextElementSibling;
+        let inputValue = input.value;
+        let newHref = link.href;
+        if (link.innerHTML === 'Next' || link.innerHTML === 'Search (regex)') {
+          const inputs = document.querySelectorAll("input[type='text']");
+          for (let j = 0; j < inputs.length; j++) {
+            if (inputs[j].value) {
+              let inputParent = inputs[j].parentNode;
+              let inputLink = inputParent.firstChild;
+              let sendField = links.find(x => x.name === inputLink.innerHTML).sendField;
+              if (newHref.indexOf("?") === -1) {
+                newHref += "?" + sendField + "=" + inputs[j].value;
+              } else {
+                newHref += "&" + sendField + "=" + inputs[j].value;
+              }
+              inputs[j].value = '';
+            }
+          }
+        }
+        const rightPane = document.querySelector('#right-pane');
+        const leftPane = document.querySelector('#left-pane');
+        
+        fetch(newHref)
+          .then(response => response.text())
+          .then(content => {
+            const parser = new DOMParser();
+            const parsedDocument = parser.parseFromString(content, "text/html");
+            const rightPaneContent = parsedDocument.querySelector('.right-pane').innerHTML;
+            const inputContent = parsedDocument.querySelector('.retVals').innerHTML;
+
+            rightPane.innerHTML = rightPaneContent;
+           
+
+            const values = inputContent.split(",").map(part => {
+              const [, value] = part.split("-");
+              return value;
+            });
+            console.log(values);
+
+            const inputs2 = document.querySelectorAll("input");
+
+            for (let i = 0; i < inputs2.length; i++) {
+                if (typeof inputs2[i+1] !== "undefined") {
+                    inputs2[i+1].value = values[i];
+                }   
+            }
+
+            // leftPane.innerHTML = inputContent;
+
+
+            const histBox = document.querySelector('.hist-box');
+            histBox.innerText = ''; 
+            const text = link.innerHTML + ': ' + inputValue;
+            if (links[i].input) {
+              histBox.innerText += text;
+              histBox.style.backgroundColor = "#616161";
+            } else {
+              histBox.style.backgroundColor = "#737373";
+            }
+          })
+          .catch(error => {
+            rightPane.innerHTML = 'Error: ' + error;
+          });
+        // setTimeout(() => {
+        //   const tables = document.getElementsByTagName("table");
+        //   for (let i = 0; i < tables.length; i++) {
+        //     const table = tables[i];
+        //     const minimizeButton = document.createElement("button");
+        //     minimizeButton.innerHTML = "-";
+        //     const maximizeButton = document.createElement("button");
+        //     maximizeButton.innerHTML = "+";
+        //     maximizeButton.style.display = "none";
+
+        //     const firstRow = table.getElementsByTagName("tr")[0];
+        //     const firstCell = table.getElementsByTagName("th")[0];
+        //     firstCell.appendChild(minimizeButton);
+        //     firstCell.appendChild(maximizeButton);
+
+        //     minimizeButton.addEventListener("click", function () {
+        //       // Get all the rows in the table
+        //       const rows = table.getElementsByTagName("tr");
+        //       for (let i = 1; i < rows.length; i++) {
+        //         // Hide the rows
+        //         rows[i].style.display = "none";
+        //       }
+        //       // Hide the minimize button and show the maximize button
+        //       minimizeButton.style.display = "none";
+        //       maximizeButton.style.display = "inline-block";
+        //     });
+
+        //     maximizeButton.addEventListener("click", function () {
+        //       // Get all the rows in the table
+        //       const rows = table.getElementsByTagName("tr");
+        //       for (let i = 1; i < rows.length; i++) {
+        //         // Show the rows
+        //         rows[i].style.display = "table-row";
+        //       }
+        //       // Hide the maximize button and show the minimize button
+        //       maximizeButton.style.display = "none";
+        //       minimizeButton.style.display = "inline-block";
+        //     });
+        //   }
+        // }, 250)
+        console.log(newHref, 'new')
+      });
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+/* generated file, do not change */
+body {
+  overflow: hidden;
+  background-color: #FEFEFE;
+}
+body * {
+  box-sizing: border-box;
+  font-family: Arial, Tahoma, Verdana;
+}
+textarea {
+  line-height: 140% !important;
+  padding: 4px 6px;
+}
+input,
+select {
+  padding: 3px;
+  border-radius: 2px;
+  border: 1px solid #c7c7c7;
+}
+input[readonly],
+textarea[readonly] {
+  color: #777 !important;
+  background-color: #f9f9f9 !important;
+}
+input[type=text][disabled],
+input[type=password][disabled],
+textarea[disabled] {
+  background-color: #eee;
+}
+a {
+  color: #3379B8 !important;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.preview-msg {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 30%;
+  font-size: 16px;
+  color: #aaa;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fafafa;
+}
+#app-toolbar {
+  background-color: transparent;
+  padding: 0 10px;
+  margin: 12px 10px 0 200px;
+}
+#app-toolbar .w2ui-tb-icon {
+  margin-top: 2px;
+}
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-group :nth-child(1) {
+  display: none;
+}
+.w2ui-menu .w2ui-menu-item .menu-icon span {
+  margin-top: -2px;
+  height: 18px;
+}
+#app-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+#app-container .app-logo {
+  position: relative;
+  top: -3px;
+}
+#app-container #app-header {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #dedede;
+}
+.logo {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 400px;
+  height: 40px;
+}
+#app-container #app-header #app-title {
+  display: inline-block;
+  padding: 15px 15px 0 20px;
+  font-size: 20px;
+  color: #606060;
+  text-shadow: 0 1px 2px #fff;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#app-container #app-header #app-title .app-logo {
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  left: 15px;
+  top: 11px;
+}
+#app-container #app-header #app-title .app-caption {
+    margin-top: 4px;
+    margin-left: 45px;
+    font-family: Tahoma;
+    font-size: 20px;
+}
+#app-container #app-header #app-title .icon-chevron-right {
+  font-size: 15px;
+  position: relative;
+  top: -1px;
+  color: #8a8a8a;
+}
+#app-container #app-main {
+  z-index: 1;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 11px;
+  border-top: 1px solid white;
+}

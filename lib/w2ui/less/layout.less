@@ -1,0 +1,86 @@
+#app-toolbar {
+    background-color: transparent;
+    padding: 0 10px;
+    margin: 12px 10px 0 300px;
+
+    .w2ui-tb-icon {
+        margin-top: 2px;
+    }
+}
+
+// hide sidevar show/hide
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-group :nth-child(1) {
+    display: none;
+}
+
+.w2ui-menu .w2ui-menu-item .menu-icon span {
+    margin-top: -2px;
+    height: 18px;
+}
+
+#app-container {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    right   : 0;
+    bottom  : 0;
+    display : none;
+
+    .app-logo {
+        position: relative;
+        top: -3px;
+    }
+    #app-header {
+        z-index : 2;
+        position: absolute;
+        top     : 0;
+        left    : 0;
+        right   : 0;
+        height  : 60px;
+        background-color: #fff;
+        border-bottom: 1px solid #dedede;
+
+        #app-title {
+            display: inline-block;
+            padding : 15px 15px 0 20px;
+            font-size: 20px;
+            color: #606060;
+            text-shadow: 0 1px 2px #fff;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            .app-logo {
+                border: 1px solid silver;
+                border-radius: 3px;
+                height: 35px;
+                width: 35px;
+                position: absolute;
+                left: 15px;
+                top: 11px;
+            }
+
+            .app-caption {
+                margin-top: 4px;
+                margin-left: 45px;
+            }
+
+            .icon-chevron-right {
+                font-size: 15px;
+                position: relative;
+                top: -1px;
+                color: #8a8a8a;
+            }
+        }
+    }
+    #app-main {
+        z-index : 1;
+        position: absolute;
+        top     : 60px;
+        left    : 0;
+        right   : 0;
+        bottom  : 0;
+        font-size: 11px;
+        border-top: 1px solid white;
+    }
+}

@@ -1,0 +1,21 @@
+.collapsible {
+    margin-right: 20px;
+}
+
+.collapse-header {
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.collapse-header:hover {
+    background-color: #f5f5f5;
+}
+
+.content {
+    margin-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

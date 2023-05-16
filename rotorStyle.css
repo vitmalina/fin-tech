@@ -1,0 +1,14 @@
+@import  "../../lib/tabulator/dist/css/tabulator.css";
+@import "../../lib/tabulator/dist/css/tabulator.css.map";
+body {
+    margin:0;
+}
+body #app-container #app-main {
+    top:0px;
+}
+
+#tb_app_tb_item_status {
+    margin:0px;
+    background-color: gray;
+    color: white;
+}

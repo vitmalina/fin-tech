@@ -1,0 +1,9 @@
+.toolbar-form {
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+.toolbar-form .w2ui-field {
+    margin-right: 8px;
+}

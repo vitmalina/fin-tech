@@ -1,0 +1,155 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+.app-header {
+  position: fixed;
+  background-color: #494a4a;
+  color: white;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: large/1.5 \"Tahoma\", \"Bitstream Vera Sans\", Verdana, Helvetica, sans-serif;
+}
+
+.left-pane {
+  position: fixed;
+  background-color: #737373;
+  padding: 10px;
+  height: 100%;
+  width: 250px;
+  font: small/1.5 \"Tahoma\", \"Bitstream Vera Sans\", Verdana, Helvetica, sans-serif;
+  overflow-y: scroll;
+  margin-top: 60px;
+}
+
+.right-pane {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  right: 0;
+  left: 250px;
+  background-color: white;
+  overflow-y: scroll;
+  padding: 10px;
+  background-color: #292929;
+  color: #fff;
+  font-family: monospace;
+}
+
+.left-pane ul {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  margin-left: -10px;
+}
+
+.left-pane li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.left-pane a {
+  color: #ffff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.left-pane a:hover {
+  color: #ffa500;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.left-pane input {
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+.hist-box {
+  color: #fff;
+  height: 5%;
+  width: fit-content;
+  border-radius: 2px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.dynamic-link[isBtn="true"] {
+  padding: 4px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  width: fit-content !important;
+}
+
+.dynamic-link[isBtn="true"]:hover {
+  box-shadow: 2px 2px 0px 0px;
+}
+
+.unclickable:hover {
+  color: #fff !important;
+}
+
+#export-button {
+  margin-left: 10px;
+  background-color: #ffa500;;
+}
+
+table,
+td {
+  margin: 0;
+  padding: 0;
+  border: 1px solid #CCC;
+  border-collapse: collapse;
+  font: small/1.5 \"Tahoma\", \"Bitstream Vera Sans\", Verdana, Helvetica, sans-serif;
+}
+
+table {
+  white-space: nowrap;
+  border: none;
+  border: 1px solid #CCC;
+  margin: 12px;
+}
+
+thead th,
+tbody th {
+  background: #737373;
+  color: #fff;
+  padding: 1px 1px;
+  border-left: 1px solid #CCC;
+}
+
+tbody th {
+  background: #505050;
+  border-top: 1px solid #CCC;
+  text-align: center;
+  font-weight: normal;
+}
+
+tbody tr td {
+  padding: 1px 1px;
+  color: #fff;
+}
+
+button {
+  margin-right: 5px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 2px;
+}

@@ -1,0 +1,45 @@
+.kanban-board {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.kanban-list {
+    flex: 0 0 auto;
+    width: 500px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0 10px;
+}
+
+.kanban-list-header {
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    margin: 0;
+    z-index: 1;
+}
+
+.kanban-list ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.kanban-list ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 3px;
+}
