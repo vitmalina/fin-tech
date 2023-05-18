@@ -1,0 +1,19 @@
+{
+    "name": "Fin-Tech",
+    "version": "1.0.0",
+    "description": "Still in progress",
+    "main": "index.html",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "devDependencies": {
+      "gulp": "^4.0.2",
+      "gulp-header": "^2.0.9",
+      "gulp-iconfont": "^11.0.0",
+      "gulp-less": "^5.0.0",
+      "gulp-uglify": "^3.0.2"
+    },
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
