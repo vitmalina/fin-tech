@@ -19,11 +19,11 @@ export default {
         items: [
             {id: 'Home', type: 'button', text: 'Home', icon: 'icon-home'},
             {type: 'break'},
-            {id: 'Rotor', type: 'button', text: 'Rotor', icon: 'icon-home', disabled: true},
+            {id: 'Rotor', type: 'button', text: 'Rotor', icon: 'icon-home' },
             {type: 'break'},
-            {id: 'Hypercron', type: 'button', text: 'Hypercron', icon: 'icon-home', disabled: true}, //todo placeholder
+            {id: 'Hypercron', type: 'button', text: 'Hypercron', icon: 'icon-home' }, //todo placeholder
             {type: 'break'},
-            {id: 'FixTrader', type: 'button', text: 'FixTrader', icon: 'icon-home', disabled: true},
+            {id: 'FixTrader', type: 'button', text: 'FixTrader', icon: 'icon-home' },
             {type: 'break'},
             {id: 'spacer1', type: 'spacer'},
             {
